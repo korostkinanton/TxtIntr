@@ -1,1 +1,15 @@
+*.o
 
+*.pyc
+
+*.class
+
+*.log
+
+*.lock
+
+*.tmp
+
+*hello
+
+*hello-dbg
