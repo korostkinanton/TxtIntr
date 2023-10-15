@@ -3,15 +3,15 @@
 
 all: debug release
 
-debug: hello-dbg
+debug: calc-dbg
 
-hello-dbg: hello.cpp
-	g++ -g -O0 hello.cpp -o hello-dbg -Wall
+calc-dbg: calc.cpp
+	g++ -g -O0 calc.cpp -o calc-dbg -Wall
 
-release: hello
+release: calc
 
-hello: hello.cpp
-	g++ -O2 hello.cpp -o hello -DNDEBUG -Wall
+calc: calc.cpp
+	g++ -O2 calc.cpp -o calc -DNDEBUG -Wall
 
 clean:
-	rm -rf hello-dbg hello
+	rm -rf calc-dbg calc
