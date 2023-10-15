@@ -10,6 +10,6 @@
 
 *.tmp
 
-*hello
+*calc
 
-*hello-dbg
+*calc-dbg
