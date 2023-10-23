@@ -1,4 +1,4 @@
-# Окороков А.С. 22ПТ2
+# Коросткин А.П. 22ПТ2
 .PHONY: all debug release clean
 
 all: debug release
