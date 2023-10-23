@@ -1,44 +1,43 @@
 #include <iostream>
-#include <cmath>
-#include <getopt.h>
+#include <math.h>
+#include <unistd.h>
 using namespace std;
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	{ if (argc==1)
-    {
-        cout << "Баллистический Калькулятор" << endl
-        << "Вам нужно ввести один из параметров, чтобы выбрать выполняемое действие:" << endl
-        << "-v — вычисление высоты" << endl 
-        << "-d — вычисление дальности" << endl 
-        << "Запустите программу ещё раз с нужным параметром и введите значения угла и начальной скорости через пробел" << endl;
+    if(argc == 1){
+        cout << "Тригонометрический калькулятор" << endl
+        << "Этот калькулятор нужен для рассчета арктангенса и аркотангенса в радианах и градусах" << endl
+        << "Введите число c параметром -x" << endl
+        << "Чтобы найти арктангенс введите параметр 't'" << endl
+        << "Чтобы найти аркотангенс введие параметр 'c'" << endl
+        << "Пример использования ./hello -x 30 -o 't'" << endl;
+        return 0;
     }
-	int opt, i; 
-	double result = 0, x, t;
-	while ((opt = getopt (argc, argv, "v:d:")) != -1)
+    //char* opts = "x:o:";
+    double x;
+    char op;
+    int opt;
+    while((opt = getopt(argc, argv, "x:o:")) != -1){
+        switch(opt)
         {
-            switch (opt)
-            {
-
-                case 'v':
-        			for(i=2; i<argc; i++)
-        			{
-            			x = strtod(argv[2], NULL);
-            			t = strtod(argv[3], NULL);
-            			result = ((t*t)*(sin(x*x))) / (10*2);
-        			}
-        		cout << "Высота = " << result << endl;
-               	break;
-
-               	case 'd':
-    				for(i=2; i<argc; i++)
-    				{
-       					x = strtod(argv[2], NULL);
-          				t = strtod(argv[3], NULL);
-        				result = ((t*t)*(sin(x*2))) / 10;
-    				}
-    			cout << "Дальность = " << result << endl;
-                break;
-            }
+            case 'x':
+            x = atoi(optarg);
+            break;
+            case 'o':
+            op = optarg[0];
+            break;
         }
     }
-}
+    switch(op){
+        case 't':
+        cout << "arctg" << " " << x << " " << "в радианах равен..." << atan(x) << endl;
+        cout << "arctg" << " " << x << " " << "в градусах равен..." << atan(x)*180/M_PI << endl;
+        break;
+        case 'c':
+        cout << "arcctg" << " " << x << " " << "в радианах равен..." << M_PI_2-atan(x) << endl;
+        cout << "arcctg" << " " << x << " " << "в радианах равен..." << (M_PI_2-atan(x))*180/M_PI << endl;
+        break;
+    }
+    return 0;
+};
+
